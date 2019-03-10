@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomeScreen">
+
+    <fragment
+        android:id="@+id/HomeScreen"
+        android:name="piyushjohnson.mytyre.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_HomeScreen_to_TyreFinder"
+            app:destination="@id/TyreFinder" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TyreFinder"
+        android:name="piyushjohnson.mytyre.TyreFinderFragment"
+        android:label="fragment_tyre_finder"
+        tools:layout="@layout/fragment_tyre_finder" />
+
+    <fragment
+        android:id="@+id/TyreShow"
+        android:name="piyushjohnson.mytyre.TyreShowFragment"
+        android:label="fragment_tyre_show"
+        tools:layout="@layout/fragment_tyre_show" />
+
+</navigation>

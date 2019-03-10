@@ -36,7 +36,7 @@
         tools:context=".VehicleTypesGridDialogFragment"
         tools:itemCount="4"
         tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/fragment_item_list_dialog_item"
+        tools:listitem="@layout/dialog_fragment_vehicle_types_grid_item"
         tools:orientation="horizontal"
         tools:spanCount="2" />
 

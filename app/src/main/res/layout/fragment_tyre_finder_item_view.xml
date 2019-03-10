@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tyre.name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Gripp X3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_constraintBottom_toTopOf="@+id/tyre.tagline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.236"
+            app:layout_constraintStart_toEndOf="@+id/tyre.img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tyre.tagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Grip as good as new.Always!"
+            app:layout_constraintBottom_toTopOf="@+id/tyre.rating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toEndOf="@+id/tyre.img"
+            app:layout_constraintTop_toBottomOf="@+id/tyre.name" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/tyre.rating"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:rating="3"
+            app:layout_constraintBottom_toTopOf="@+id/buy.btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.216"
+            app:layout_constraintStart_toEndOf="@+id/tyre.img"
+            app:layout_constraintTop_toBottomOf="@+id/tyre.tagline" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tyre.img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="10:11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.039"
+            tools:srcCompat="@drawable/sample_tyre_2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buy.btn"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            tools:text="Rs. 2405"
+            app:cornerRadius="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/cart.btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/tyre.img"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cart.btn"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="113dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            tools:text="Add to cart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:cornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buy.btn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="2dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
