@@ -81,7 +81,7 @@
         app:cardElevation="4dp"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="center|bottom"
-        app:layout_behavior="piyushjohnson.mytyre.CustomMaterialCardBehavior">
+        app:layout_behavior="piyushjohnson.mytyre.util.CustomMaterialCardBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/panel.layout"

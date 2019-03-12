@@ -1,4 +1,4 @@
-package piyushjohnson.mytyre;
+package piyushjohnson.mytyre.util;
 
 import android.content.Context;
 import android.util.AttributeSet;
