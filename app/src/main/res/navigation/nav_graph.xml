@@ -19,7 +19,12 @@
         android:id="@+id/TyreFinder"
         android:name="piyushjohnson.mytyre.TyreFinderFragment"
         android:label="fragment_tyre_finder"
-        tools:layout="@layout/fragment_tyre_finder" />
+        tools:layout="@layout/fragment_tyre_finder">
+        <argument
+            android:name="vehicleType"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
 
     <fragment
         android:id="@+id/TyreShow"

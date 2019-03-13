@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatImageButton xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/vehicle.icon"
-        android:layout_width="wrap_content"
+
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vehicleType"
+            type="piyushjohnson.mytyre.model.VehicleType" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/screen_background_light"
-        android:src="@drawable/ic_truck" />
+        android:layout_width="wrap_content">
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/vehicle_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/screen_background_light"
+            tools:src="@drawable/ic_car"
+            android:src="@{vehicleType.icon}" />
+
+    </FrameLayout>
+</layout>
+

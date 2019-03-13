@@ -2,6 +2,7 @@ package piyushjohnson.mytyre;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatRatingBar;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import piyushjohnson.mytyre.common.BaseFragment;
 
-public class TyreFinderFragment extends Fragment {
+public class TyreFinderFragment extends BaseFragment {
 
     private List<Dataset> datasets;
     private Listener mListener;
     RecyclerView recyclerView;
+    private static final String TAG = "TyreFinderFragment";
 
     public TyreFinderFragment() {
         // Required empty public constructor
@@ -48,6 +50,7 @@ public class TyreFinderFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.i(TAG, "onCreate: " + getArguments().getString("vehicleType"));
         recyclerView = view.findViewById(R.id.recyclerView);
     }
 

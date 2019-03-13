@@ -3,25 +3,22 @@ package piyushjohnson.mytyre;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.button.MaterialButton;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import piyushjohnson.mytyre.common.BaseActivity;
-import piyushjohnson.mytyre.common.Resource;
 import piyushjohnson.mytyre.model.Tyre;
+import piyushjohnson.mytyre.model.VehicleType;
+import piyushjohnson.mytyre.util.Filters;
 
 public class HomeActivity extends BaseActivity implements TyreFinderFragment.Listener, VehicleTypesGridDialogFragment.Listener, VehicleModelsListDialogFragment.Listener, View.OnClickListener {
 
@@ -43,13 +40,10 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
 
         mainViewModel = getViewModel(MainViewModel.class);
         Log.i(TAG, "onCreate: " + mainViewModel.hashCode());
-        mainViewModel.getPopularTyres().observe(this, new Observer<Resource<List<Tyre>>>() {
-            @Override
-            public void onChanged(Resource<List<Tyre>> listResource) {
-                if (listResource.isSuccessful()) {
-                    for (Tyre tyre : listResource.data()) {
-                        Toast.makeText(HomeActivity.this, tyre.name, Toast.LENGTH_SHORT).show();
-                    }
+        mainViewModel.getTyres(Filters.getDefault()).observe(this, listResource -> {
+            if (listResource.isSuccessful()) {
+                for (Tyre tyre : listResource.data()) {
+                    Log.i(TAG, tyre.getName());
                 }
             }
         });
@@ -79,7 +73,7 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
 
     @Override
     public void onItemClicked(int position, View view) {
-        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_HomeScreen_to_TyreFinder);
+
     }
 
     @Override
@@ -94,5 +88,12 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
                 break;
         }
         dialogFragment.show(getSupportFragmentManager(), dialogFragment.getTag());
+    }
+
+    @Override
+    public void onVehicleTypeSelected(VehicleType vehicleType) {
+        Bundle bundle = new Bundle();
+        bundle.putString("vehicleType", vehicleType.getTitle());
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_HomeScreen_to_TyreFinder, bundle);
     }
 }

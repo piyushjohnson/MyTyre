@@ -1,9 +1,12 @@
 package piyushjohnson.mytyre.model;
 
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Tyre extends Model {
-    public String name;
-    public String tagline;
-    public String img_uri;
+    private String name;
+    private String tagline;
+    private String img_uri;
 
     public Tyre() {
     }

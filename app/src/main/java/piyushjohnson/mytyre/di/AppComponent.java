@@ -12,6 +12,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         AndroidSupportInjectionModule.class,
         ActivitiesModule.class,
+        FragmentsModule.class,
         ViewModelModule.class,
         FirebaseModule.class
 })

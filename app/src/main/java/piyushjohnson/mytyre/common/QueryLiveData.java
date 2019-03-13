@@ -39,7 +39,8 @@ public class QueryLiveData<T extends Model> extends LiveData<Resource<List<T>>> 
     protected void onActive() {
         super.onActive();
         if (realtime)
-            registration = query.addSnapshotListener(this);
+            registration = null;
+//            registration = query.addSnapshotListener(this);
         else
             query.get().addOnCompleteListener(this).addOnCanceledListener(this).addOnFailureListener(this);
     }
