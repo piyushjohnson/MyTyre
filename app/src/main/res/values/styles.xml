@@ -15,6 +15,12 @@
         <item name="bottomSheetDialogTheme">@style/AppThemeBottomSheetDialogTheme</item>
     </style>
 
+    <style name="AppTheme.Launcher">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="AppTheme" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

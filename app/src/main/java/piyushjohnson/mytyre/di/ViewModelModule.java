@@ -11,7 +11,6 @@ import piyushjohnson.mytyre.util.ViewModelFactory;
 @Module
 public abstract class ViewModelModule {
 
-
     @Binds
     @IntoMap
     @ViewModelKey(MainViewModel.class)

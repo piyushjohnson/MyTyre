@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import piyushjohnson.mytyre.adapter.PopularTyresAdapter;
@@ -36,7 +39,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         View root = binding.getRoot();
         return root;
@@ -51,10 +53,17 @@ public class HomeFragment extends BaseFragment {
     private void init() {
         initPopularTyresList();
         setupViewModelData();
+        mainViewModel.getIsOffline().observe(getActivity(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Snackbar.make(getView(), "Oops! You're offline", Snackbar.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void setupViewModelData() {
         mainViewModel.getPopularTyres().observe(getActivity(), listResource -> {
+            mainViewModel.setIsOffline(listResource.isStale());
             if (listResource.isSuccessful()) {
                 adapter.setItemsList(listResource.data());
             }
@@ -63,7 +72,7 @@ public class HomeFragment extends BaseFragment {
 
     private void initPopularTyresList() {
         adapter = new PopularTyresAdapter(this::onPopularTyreSelected);
-        layoutManager = new GridLayoutManager(getActivity(), 2, RecyclerView.HORIZONTAL, false);
+        layoutManager = new GridLayoutManager(getActivity(), 2, RecyclerView.VERTICAL, false);
         binding.popularTyresList.setLayoutManager(layoutManager);
         binding.popularTyresList.setAdapter(adapter);
     }
@@ -71,6 +80,4 @@ public class HomeFragment extends BaseFragment {
     private void onPopularTyreSelected(Tyre tyre) {
 
     }
-
-
 }

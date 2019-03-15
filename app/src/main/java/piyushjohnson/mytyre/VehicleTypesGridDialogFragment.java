@@ -30,7 +30,7 @@ public class VehicleTypesGridDialogFragment extends BottomSheetDialogFragment {
     private static final String TAG = "VehicleTypesGridDialog";
 
     // TODO: Customize parameters
-    public static VehicleTypesGridDialogFragment newInstance(int itemCount) {
+    public static VehicleTypesGridDialogFragment newInstance() {
         final VehicleTypesGridDialogFragment fragment = new VehicleTypesGridDialogFragment();
         final Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -99,8 +99,8 @@ public class VehicleTypesGridDialogFragment extends BottomSheetDialogFragment {
         vehicleTypeList = new ArrayList<>();
         vehicleTypeList.add(new VehicleType(R.drawable.ic_car, "car"));
         vehicleTypeList.add(new VehicleType(R.drawable.ic_motorcycle, "motorcycle"));
-        vehicleTypeList.add(new VehicleType(R.drawable.ic_truck, "truck"));
         vehicleTypeList.add(new VehicleType(R.drawable.ic_lastmile, "lastmile"));
+        vehicleTypeList.add(new VehicleType(R.drawable.ic_farm, "farm"));
         adapter.setItemsList(vehicleTypeList);
     }
 

@@ -11,53 +11,53 @@
         android:layout_height="match_parent">
 
             <TextView
-            android:id="@+id/tyre.name"
+                android:id="@+id/recent_tyre_name"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_marginTop="8dp"
             android:text="Gripp X3"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tyre.rating"
+                app:layout_constraintBottom_toTopOf="@+id/recent_tyre_rating"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.appcompat.widget.AppCompatRatingBar
-            android:id="@+id/tyre.rating"
+            android:id="@+id/recent_tyre_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:rating="3"
-            app:layout_constraintBottom_toTopOf="@+id/tyre.tagline"
-            app:layout_constraintStart_toStartOf="@+id/tyre.name"
-            app:layout_constraintTop_toBottomOf="@+id/tyre.name" />
+            app:layout_constraintBottom_toTopOf="@+id/recent_tyre_tagline"
+            app:layout_constraintStart_toStartOf="@+id/recent_tyre_name"
+            app:layout_constraintTop_toBottomOf="@+id/recent_tyre_name" />
 
         <TextView
-            android:id="@+id/tyre.tagline"
+            android:id="@+id/recent_tyre_tagline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Grip as good as new. Always!"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:fontFamily="sans-serif-light"
-            app:layout_constraintStart_toStartOf="@+id/tyre.rating"
-            app:layout_constraintTop_toBottomOf="@+id/tyre.rating" />
+            app:layout_constraintStart_toStartOf="@+id/recent_tyre_rating"
+            app:layout_constraintTop_toBottomOf="@+id/recent_tyre_rating" />
 
         <TextView
-            android:id="@+id/tyre.price"
+            android:id="@+id/recent_tyre_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rs. 2500"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="@+id/tyre.img"
+            app:layout_constraintEnd_toEndOf="@+id/recent_tyre_img"
             app:layout_constraintHorizontal_bias="0.507"
-            app:layout_constraintStart_toStartOf="@+id/tyre.img"
-            app:layout_constraintTop_toBottomOf="@+id/tyre.img" />
+            app:layout_constraintStart_toStartOf="@+id/recent_tyre_img"
+            app:layout_constraintTop_toBottomOf="@+id/recent_tyre_img" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addToCartBtn"
+            android:id="@+id/add_to_cart_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add_shopping_cart_black_24dp"
@@ -69,7 +69,7 @@
             app:layout_constraintVertical_bias="0.946" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/tyre.img"
+            android:id="@+id/recent_tyre_img"
             android:layout_width="140dp"
             android:layout_height="142dp"
             android:layout_marginStart="8dp"

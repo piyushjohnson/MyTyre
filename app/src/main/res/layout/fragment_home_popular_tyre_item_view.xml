@@ -5,25 +5,25 @@
 
         <variable
             name="tyre"
-            type="piyushjohnson.mytyre.model.Tyre"></variable>
+            type="piyushjohnson.mytyre.model.Tyre" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="200dp"
-        android:layout_height="280dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/tyre.img"
+                android:id="@+id/popular_tyre_img"
                 android:imageUrl="@{tyre.img_uri}"
                 tools:srcCompat="@drawable/sample_tyre_2"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -36,20 +36,20 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/tyre.name"
+                android:id="@+id/popular_tyre_name"
                 android:text="@{tyre.name}"
                 tools:text="ZOOM Plus"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tyre.img"
-                app:layout_constraintStart_toStartOf="@+id/tyre.img"
-                app:layout_constraintTop_toBottomOf="@+id/tyre.img" />
+                app:layout_constraintEnd_toEndOf="@+id/popular_tyre_img"
+                app:layout_constraintStart_toStartOf="@+id/popular_tyre_img"
+                app:layout_constraintTop_toBottomOf="@+id/popular_tyre_img" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

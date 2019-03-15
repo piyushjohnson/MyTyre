@@ -1,5 +1,7 @@
 package piyushjohnson.mytyre.common;
 
+import com.google.firebase.firestore.Source;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -10,19 +12,23 @@ public final class Resource<T> {
     private final T data;
 
     @Nullable
+    private final Source source;
+
+    @Nullable
     private final Exception error;
 
-    public Resource(@NonNull T data) {
-        this(data, null);
+    public Resource(@NonNull T data, @NonNull Source source) {
+        this(data, null, source);
     }
 
-    public Resource(@NonNull Exception error) {
-        this(null, error);
+    public Resource(@NonNull Exception error, @NonNull Source source) {
+        this(null, error, source);
     }
 
-    public Resource(@Nullable T data, @Nullable Exception error) {
+    public Resource(@Nullable T data, @Nullable Exception error, Source source) {
         this.data = data;
         this.error = error;
+        this.source = source;
     }
 
     public boolean isSuccessful() {
@@ -34,6 +40,10 @@ public final class Resource<T> {
             throw new IllegalStateException("Error is not null, call isSuccessful first");
         }
         return data;
+    }
+
+    public boolean isStale() {
+        return isSuccessful() && source == Source.CACHE;
     }
 
     public Exception error() {

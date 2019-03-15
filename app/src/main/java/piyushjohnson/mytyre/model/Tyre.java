@@ -4,6 +4,13 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class Tyre extends Model {
+    public static String FIELD_VEHICLE_TYPE = "type";
+    public static String FIELD_TYRE_SIZE = "size";
+    public static String FIELD_TYRE_NAME = "name";
+    public static String FIELD_TYRE_TAGLINE = "tagline";
+    public static String FIELD_TYRE_FEATURES = "features";
+    public static String FIELD_TYRE_IMG_URI = "img_uri";
+
     private String name;
     private String tagline;
     private String img_uri;

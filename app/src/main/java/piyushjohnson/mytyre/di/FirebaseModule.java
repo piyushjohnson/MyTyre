@@ -12,17 +12,6 @@ import dagger.Provides;
 @Module
 public class FirebaseModule {
 
-    FirebaseFirestore firestore;
-
-    FirebaseModule() {
-        FirebaseFirestore.setLoggingEnabled(true);
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setPersistenceEnabled(true)
-                .build();
-        this.firestore = FirebaseFirestore.getInstance();
-        firestore.setFirestoreSettings(settings);
-    }
-
     @Singleton
     @Provides
     FirebaseApp providesFirebase() {
@@ -32,6 +21,12 @@ public class FirebaseModule {
     @Singleton
     @Provides
     FirebaseFirestore providesFirestore() {
+        FirebaseFirestore.setLoggingEnabled(true);
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        firestore.setFirestoreSettings(settings);
         return firestore;
     }
 

@@ -1,6 +1,9 @@
 package piyushjohnson.mytyre.common;
 
+import android.net.Uri;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -13,9 +16,14 @@ public class BindingAdapters {
 
     @BindingAdapter({"android:imageUrl"})
     public static void loadNetworkImage(AppCompatImageView view, String url) {
-        Glide.with(view.getContext())
-                .load(url)
-                .into(view);
+        if (Uri.parse(url).isRelative()) {
+            Glide.with(view.getContext())
+                    .load("https://www.ceat.com" + url)
+                    .thumbnail(0.2f)
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .into(view);
+        }
+
     }
 
     @BindingAdapter({"android:src"})

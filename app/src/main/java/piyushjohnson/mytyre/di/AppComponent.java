@@ -4,8 +4,8 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import dagger.android.AndroidInjector;
-import dagger.android.DaggerApplication;
 import dagger.android.support.AndroidSupportInjectionModule;
+import dagger.android.support.DaggerApplication;
 
 @Singleton
 @SuppressWarnings("unchecked")
