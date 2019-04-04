@@ -6,6 +6,7 @@ public class Filters {
     private String sortBy = null;
     private String vehicleType = null;
     private String[] tyreParameters = null;
+    private String tyreName = null;
 
     public Filters() {
 
@@ -13,7 +14,6 @@ public class Filters {
 
     public static Filters getDefault() {
         Filters filters = new Filters();
-        filters.setVehicleType("lastmile");
         return filters;
     }
 
@@ -29,6 +29,9 @@ public class Filters {
         return tyreParameters.length > 0;
     }
 
+    public boolean hasTyreName() {
+        return tyreName == null;
+    }
 
     public String getSortBy() {
         return sortBy;
@@ -52,5 +55,13 @@ public class Filters {
 
     public void setTyreParameters(String[] tyreParameters) {
         this.tyreParameters = tyreParameters;
+    }
+
+    public String getTyreName() {
+        return tyreName;
+    }
+
+    public void setTyreName(String tyreName) {
+        this.tyreName = tyreName;
     }
 }

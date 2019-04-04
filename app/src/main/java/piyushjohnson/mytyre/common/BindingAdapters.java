@@ -1,6 +1,7 @@
 package piyushjohnson.mytyre.common;
 
 import android.net.Uri;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -11,17 +12,22 @@ import androidx.databinding.BindingAdapter;
 
 public class BindingAdapters {
 
+    private static final String TAG = "BindingAdapters";
+
     public BindingAdapters() {
     }
 
     @BindingAdapter({"android:imageUrl"})
     public static void loadNetworkImage(AppCompatImageView view, String url) {
-        if (Uri.parse(url).isRelative()) {
-            Glide.with(view.getContext())
-                    .load("https://www.ceat.com" + url)
-                    .thumbnail(0.2f)
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
-                    .into(view);
+        Log.i(TAG, "loadNetworkImage: url " + url);
+        if (url != null) {
+            if (Uri.parse(url).isRelative()) {
+                Glide.with(view.getContext())
+                        .load("https://www.ceat.com" + url)
+                        .thumbnail(0.2f)
+                        .diskCacheStrategy(DiskCacheStrategy.DATA)
+                        .into(view);
+            }
         }
 
     }

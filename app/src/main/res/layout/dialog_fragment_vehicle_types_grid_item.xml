@@ -12,15 +12,18 @@
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp">
 
         <androidx.appcompat.widget.AppCompatImageButton xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/vehicle_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:drawable/screen_background_light"
-            tools:src="@drawable/ic_car"
-            android:src="@{vehicleType.icon}" />
+            android:scaleType="fitCenter"
+            android:src="@{vehicleType.icon}"
+            tools:src="@drawable/ic_car" />
 
     </FrameLayout>
 </layout>

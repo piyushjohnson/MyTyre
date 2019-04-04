@@ -14,6 +14,7 @@ import dagger.android.support.DaggerApplication;
         ActivitiesModule.class,
         FragmentsModule.class,
         ViewModelModule.class,
+        RoomModule.class,
         FirebaseModule.class
 })
 interface AppComponent extends AndroidInjector<DaggerApplication> {

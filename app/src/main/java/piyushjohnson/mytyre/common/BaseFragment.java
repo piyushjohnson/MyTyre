@@ -13,6 +13,6 @@ public class BaseFragment extends DaggerFragment {
     public ViewModelProvider.Factory viewModelFactory;
 
     protected <T extends ViewModel> T getViewModel(final Class<T> tClass) {
-        return ViewModelProviders.of(this, viewModelFactory).get(tClass);
+        return ViewModelProviders.of(getActivity(), viewModelFactory).get(tClass);
     }
 }

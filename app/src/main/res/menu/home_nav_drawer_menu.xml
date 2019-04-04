@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/nav_menu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_my_wishlist"
+            android:icon="@drawable/wishlist"
+            android:title="My Wishlist" />
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/icon_cart"
+            android:title="Your Cart" />
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/about_us"
+            android:title="About Us" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/contact"
+            android:title="Contact" />
+    </group>
+    <group android:id="@+id/footer">
+        <item
+            android:id="@+id/nav_footer"
+            android:enabled="true"
+            android:visible="true"
+            app:actionLayout="@layout/activity_home_nav_footer" />
+    </group>
+
+</menu>

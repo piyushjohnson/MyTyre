@@ -7,15 +7,16 @@ import android.view.ViewGroup;
 import androidx.databinding.DataBindingUtil;
 import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.common.DataListAdapter;
+import piyushjohnson.mytyre.common.OnItemActionListener;
 import piyushjohnson.mytyre.common.OnItemClickedListener;
 import piyushjohnson.mytyre.databinding.DialogFragmentVehicleTypesGridItemBinding;
 import piyushjohnson.mytyre.model.VehicleType;
 
-public class VehicleTypesAdapter extends DataListAdapter<VehicleType, DialogFragmentVehicleTypesGridItemBinding> {
+public class VehicleTypesAdapter extends DataListAdapter<VehicleType, DialogFragmentVehicleTypesGridItemBinding, OnItemActionListener> {
 
 
     public VehicleTypesAdapter(OnItemClickedListener<VehicleType> listener) {
-        super(listener);
+        super(listener, null);
     }
 
     @Override

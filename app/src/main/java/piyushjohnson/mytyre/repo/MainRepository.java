@@ -2,12 +2,13 @@ package piyushjohnson.mytyre.repo;
 
 import android.util.Log;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import javax.inject.Inject;
 
-import androidx.annotation.Nullable;
+import piyushjohnson.mytyre.common.DocumentLiveData;
 import piyushjohnson.mytyre.common.QueryLiveData;
 import piyushjohnson.mytyre.model.Tyre;
 import piyushjohnson.mytyre.util.Filters;
@@ -21,16 +22,23 @@ public class MainRepository {
     public MainRepository(FirebaseFirestore firestore) {
         this.firestore = firestore;
         Log.i(TAG, "MainRepository: initialised main repo");
+        Log.d(TAG, "MainRepository() called with: firestore = [" + firestore.hashCode() + "]");
     }
 
-    public QueryLiveData<Tyre> popularTyres(@Nullable Filters filters) {
+    public QueryLiveData<Tyre> popularTyres() {
         Log.i(TAG, "popularTyres: requested popular tyres");
-        return new QueryLiveData<>(toQuery("popular", filters), Tyre.class, false);
+        Log.d(TAG, "popularTyres() called");
+        return new QueryLiveData<Tyre>(toQuery("popular", null), Tyre.class, false);
     }
 
     public QueryLiveData<Tyre> getTyres(Filters filters) {
         Log.i(TAG, "getTyres: requested tyres");
+        Log.d(TAG, "getTyres() called with: filters = [" + filters + "]");
         return new QueryLiveData<>(toQuery("tyres", filters), Tyre.class, false);
+    }
+
+    public DocumentLiveData<Tyre> getTyre(String documentName) {
+        return new DocumentLiveData<>(Tyre.class, toDoc("tyres", documentName));
     }
 
     private Query toQuery(String collectionName, Filters filters) {
@@ -43,4 +51,11 @@ public class MainRepository {
         return query;
     }
 
+    public DocumentReference toDoc(String collectionName, String documentName) {
+        DocumentReference reference = null;
+        if (documentName != null && collectionName != null) {
+            reference = firestore.collection("tyres").document(documentName.trim().toLowerCase().replaceAll("[\\s /]", "_"));
+        }
+        return reference;
+    }
 }

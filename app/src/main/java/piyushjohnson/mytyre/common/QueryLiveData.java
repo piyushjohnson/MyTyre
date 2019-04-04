@@ -8,8 +8,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -19,19 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.annotation.Nullable;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import piyushjohnson.mytyre.model.Model;
 
-public class QueryLiveData<T extends Model> extends LiveData<Resource<List<T>>> implements EventListener<QuerySnapshot>, OnCompleteListener<QuerySnapshot>, OnCanceledListener, OnFailureListener {
+public class QueryLiveData<T extends Model> extends LiveData<Resource<List<T>>> implements OnCompleteListener<QuerySnapshot>, OnCanceledListener, OnFailureListener {
 
     private static final String TAG = "QueryLiveData";
-    private final Query query;
     private final Class<T> type;
     private final boolean realtime;
     private Source source;
+    private Query query;
     private ListenerRegistration registration;
 
 
@@ -39,8 +35,10 @@ public class QueryLiveData<T extends Model> extends LiveData<Resource<List<T>>> 
         this.query = query;
         this.type = type;
         this.realtime = realtime;
-        this.source = Source.CACHE;
-        Log.i(TAG, "QueryLiveData: initialised query");
+        this.source = Source.DEFAULT;
+        query.get(this.source).addOnCompleteListener(this).addOnCanceledListener(this).addOnFailureListener(this);
+        Log.d(TAG, "QueryLiveData() called with: query = [" + query + "], type = [" + type + "], realtime = [" + realtime + "]");
+        Log.i(TAG, "QueryLiveData: initialised query " + this.hashCode());
     }
 
     @Override
@@ -50,28 +48,33 @@ public class QueryLiveData<T extends Model> extends LiveData<Resource<List<T>>> 
 //            registration = null;
 //            registration = query.addSnapshotListener(this);
 //        else
-        query.get().addOnCompleteListener(this).addOnCanceledListener(this).addOnFailureListener(this);
+        Log.d(TAG, "onActive() called");
+        if (source == Source.SERVER) {
+            query.get(Source.CACHE).addOnCompleteListener(this).addOnCanceledListener(this).addOnFailureListener(this);
+        }
         Log.i(TAG, "onActive: added query");
     }
 
     @Override
     protected void onInactive() {
         super.onInactive();
-        if (registration != null) {
+        Log.d(TAG, "onInactive() called");
+        Log.i(TAG, "onInactive: removed query");
+    /*    if (registration != null) {
             registration.remove();
             registration = null;
             Log.i(TAG, "onInactive: removed query");
-        }
+        }*/
     }
 
-    @Override
+    /*@Override
     public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
         if (e != null) {
             setValue(new Resource<List<T>>(e, source));
             return;
         }
         setValue(new Resource<>(snapshotToList(snapshot), source));
-    }
+    }*/
 
     @NonNull
     private List<T> snapshotToList(QuerySnapshot snapshot) {
@@ -96,20 +99,22 @@ public class QueryLiveData<T extends Model> extends LiveData<Resource<List<T>>> 
             setValue(new Resource<>(snapshotToList(Objects.requireNonNull(task.getResult())), source));
         } else {
             Log.i(TAG, "onComplete: failed to fetch");
-            setValue(new Resource<List<T>>(new Exception("Task failed"), source));
+            setValue(new Resource<>(new Exception("Task failed"), source));
         }
+        Log.d(TAG, "onComplete() called with: task = [" + task.isSuccessful() + "]");
     }
 
     @Override
     public void onCanceled() {
         Log.i(TAG, "onCanceled: fetch canceled");
-        setValue(new Resource<List<T>>(new Exception("Task cancelled"), source));
+        setValue(new Resource<>(new Exception("Task cancelled"), source));
+        Log.d(TAG, "onCanceled() called");
     }
 
     @Override
     public void onFailure(@NonNull Exception e) {
         Log.i(TAG, "onFailure: fetch failed");
-        setValue(new Resource<List<T>>(e, source));
+        setValue(new Resource<>(e, source));
     }
 
     public Source getSource(QuerySnapshot snapshot) {

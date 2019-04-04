@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/HomeScreen"
         android:name="piyushjohnson.mytyre.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_HomeScreen_to_TyreFinder"
@@ -18,18 +18,44 @@
     <fragment
         android:id="@+id/TyreFinder"
         android:name="piyushjohnson.mytyre.TyreFinderFragment"
-        android:label="fragment_tyre_finder"
+        android:label="Find Tyre"
         tools:layout="@layout/fragment_tyre_finder">
         <argument
             android:name="vehicleType"
             app:argType="string"
             android:defaultValue="null" />
+        <action
+            android:id="@+id/action_TyreFinder_to_TyreShow"
+            app:destination="@id/TyreShow" />
     </fragment>
 
     <fragment
         android:id="@+id/TyreShow"
         android:name="piyushjohnson.mytyre.TyreShowFragment"
-        android:label="fragment_tyre_show"
-        tools:layout="@layout/fragment_tyre_show" />
+        android:label="MyTyre"
+        tools:layout="@layout/fragment_tyre_show">
+        <argument
+            android:name="tyreName"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/YourCart"
+        android:name="piyushjohnson.mytyre.CartFragment"
+        android:label="Your Cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/AboutUs"
+        android:name="piyushjohnson.mytyre.AboutUsFragment"
+        android:label="About Us"
+        tools:layout="@layout/fragment_about_us" />
+
+    <fragment
+        android:id="@+id/Contact"
+        android:name="piyushjohnson.mytyre.ContactFragment"
+        android:label="Contact"
+        tools:layout="@layout/fragment_contact" />
 
 </navigation>

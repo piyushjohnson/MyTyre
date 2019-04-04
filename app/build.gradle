@@ -28,14 +28,17 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+
+    // Support Libs
     implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    // Material Components
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     //LiveData ,ViewModel
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     // Room
@@ -53,6 +56,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.7'
     // Firestore
     implementation 'com.google.firebase:firebase-firestore:18.1.0'
+    // FirebaseUI for Firebase Auth
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.2'
     // Dagger 2 Core
     implementation 'com.google.dagger:dagger:2.21'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.21'

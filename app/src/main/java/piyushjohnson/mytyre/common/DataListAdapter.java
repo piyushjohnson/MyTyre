@@ -11,13 +11,15 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-public abstract class DataListAdapter<T, V extends ViewDataBinding> extends RecyclerView.Adapter<DataViewHolder<V>> {
+public abstract class DataListAdapter<T, V extends ViewDataBinding, S extends OnItemActionListener> extends RecyclerView.Adapter<DataViewHolder<V>> {
 
     private List<T> mItems;
     protected final OnItemClickedListener<T> listener;
+    protected final S actionListener;
 
-    public DataListAdapter(final OnItemClickedListener<T> listener) {
+    public DataListAdapter(final OnItemClickedListener<T> listener, S actionListener) {
         this.listener = listener;
+        this.actionListener = actionListener;
         this.mItems = new ArrayList<>();
     }
 
@@ -46,7 +48,8 @@ public abstract class DataListAdapter<T, V extends ViewDataBinding> extends Recy
 
     public void setItemsList(List<T> newItems) {
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new ItemsDiffCallback(this.mItems, newItems));
-        this.mItems = newItems;
+        this.mItems.clear();
+        this.mItems.addAll(newItems);
         diffResult.dispatchUpdatesTo(this);
     }
 

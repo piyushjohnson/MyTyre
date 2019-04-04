@@ -6,14 +6,15 @@ import android.view.ViewGroup;
 import androidx.databinding.DataBindingUtil;
 import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.common.DataListAdapter;
+import piyushjohnson.mytyre.common.OnItemActionListener;
 import piyushjohnson.mytyre.common.OnItemClickedListener;
 import piyushjohnson.mytyre.databinding.FragmentHomePopularTyreItemViewBinding;
 import piyushjohnson.mytyre.model.Tyre;
 
-public class PopularTyresAdapter extends DataListAdapter<Tyre, FragmentHomePopularTyreItemViewBinding> {
+public class PopularTyresAdapter extends DataListAdapter<Tyre, FragmentHomePopularTyreItemViewBinding, OnItemActionListener> {
 
     public PopularTyresAdapter(OnItemClickedListener<Tyre> listener) {
-        super(listener);
+        super(listener, null);
     }
 
     @Override

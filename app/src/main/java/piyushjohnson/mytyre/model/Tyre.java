@@ -2,7 +2,13 @@ package piyushjohnson.mytyre.model;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 @IgnoreExtraProperties
+@Entity
 public class Tyre extends Model {
     public static String FIELD_VEHICLE_TYPE = "type";
     public static String FIELD_TYRE_SIZE = "size";
@@ -11,10 +17,13 @@ public class Tyre extends Model {
     public static String FIELD_TYRE_FEATURES = "features";
     public static String FIELD_TYRE_IMG_URI = "img_uri";
 
+    @PrimaryKey
+    @NonNull
     private String name;
     private String tagline;
     private String img_uri;
 
+    @Ignore
     public Tyre() {
     }
 

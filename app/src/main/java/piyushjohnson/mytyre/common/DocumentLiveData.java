@@ -25,7 +25,7 @@ public class DocumentLiveData<T extends Model> extends LiveData<Resource<T>> imp
     public DocumentLiveData(Class<T> type, DocumentReference reference) {
         this.type = type;
         this.reference = reference;
-        this.source = Source.CACHE;
+        this.source = Source.DEFAULT;
     }
 
     @Override
@@ -37,10 +37,11 @@ public class DocumentLiveData<T extends Model> extends LiveData<Resource<T>> imp
     @Override
     protected void onInactive() {
         super.onInactive();
-        if (registration != null) {
+        if (registration == null) {
             registration.remove();
             registration = null;
         }
+
     }
 
 
