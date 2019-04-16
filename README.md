@@ -1,6 +1,20 @@
 MyTyre
 =======
+
 A simple tyre's B2B app
+
+Made Possible
+=============
+
+<div style=" min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;">
+<img src="https://logosvector.net/wp-content/uploads/2015/07/android-vector-logo-200x200.png" alt="Android" width="250" height="250"/>
+<img src="https://gradle.org/images/gradle-knowledge-graph-logo.png?20170228" alt="Gradle" width="200" height="200"/>
+<img src="https://1.bp.blogspot.com/-1Ksf7Hs0XJc/WrlKFWcSKCI/AAAAAAAAFKE/Vr8i6c1dLmcek-nWcbI4UrDVYBMVS_B1QCLcBGAs/s1600/logo_android_studio_512dp.png" alt="Gradle" width="220" height="220"/>
+<img src="https://developer.android.com/images/jetpack/jetpack-hero.svg" alt="Jetpack" width="220" height="220"/>
+<div>
 
 Introduction
 =============
@@ -17,6 +31,7 @@ Table of Contents
    * [Usage](#usage)
    * [Tests](#tests)
    * [Dependency](#dependency)
+   * [License](#license)
 <!--te-->
 
 Pre Requisites
@@ -66,6 +81,7 @@ Screenshots
 -----------
 
 <div style=" min-height: 100%;
+  min-width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;">
@@ -115,3 +131,7 @@ Dependency
   * Android Processor
 * Glide
 
+License
+=======
+
+MyTyre is licensed under the MIT License.You can find license text at **LICENSE.md**
