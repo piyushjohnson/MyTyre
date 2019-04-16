@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import piyushjohnson.mytyre.common.BaseFragment;
 import piyushjohnson.mytyre.databinding.FragmentTyreShowBinding;
 import piyushjohnson.mytyre.model.Tyre;
+import piyushjohnson.mytyre.ui.MainViewModel;
 
 public class TyreShowFragment extends BaseFragment {
 

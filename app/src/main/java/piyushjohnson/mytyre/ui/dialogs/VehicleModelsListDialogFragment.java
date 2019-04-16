@@ -1,4 +1,4 @@
-package piyushjohnson.mytyre;
+package piyushjohnson.mytyre.ui.dialogs;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import piyushjohnson.mytyre.R;
 
 public class VehicleModelsListDialogFragment extends BottomSheetDialogFragment {
 

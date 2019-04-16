@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModelProvider;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
-import piyushjohnson.mytyre.CartViewModel;
-import piyushjohnson.mytyre.MainViewModel;
+import piyushjohnson.mytyre.ui.cart.CartViewModel;
+import piyushjohnson.mytyre.ui.MainViewModel;
 import piyushjohnson.mytyre.util.ViewModelFactory;
 
 @Module

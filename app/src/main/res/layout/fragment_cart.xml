@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".CartFragment">
+        tools:context=".ui.cart.CartFragment">
 
         <TextView
             android:id="@+id/your_cart_title"

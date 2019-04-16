@@ -2,8 +2,8 @@ package piyushjohnson.mytyre.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import piyushjohnson.mytyre.CartFragment;
-import piyushjohnson.mytyre.HomeFragment;
+import piyushjohnson.mytyre.ui.cart.CartFragment;
+import piyushjohnson.mytyre.ui.home.HomeFragment;
 import piyushjohnson.mytyre.TyreFinderFragment;
 import piyushjohnson.mytyre.TyreShowFragment;
 

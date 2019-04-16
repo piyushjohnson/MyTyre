@@ -1,4 +1,4 @@
-package piyushjohnson.mytyre;
+package piyushjohnson.mytyre.ui.cart;
 
 
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.adapter.CartItemAdapter;
 import piyushjohnson.mytyre.common.BaseFragment;
 import piyushjohnson.mytyre.databinding.FragmentCartBinding;

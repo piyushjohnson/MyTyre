@@ -39,7 +39,7 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vehicle_types_title"
-            tools:context=".VehicleTypesGridDialogFragment"
+            tools:context=".ui.dialogs.VehicleTypesGridDialogFragment"
             tools:itemCount="4"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/dialog_fragment_vehicle_types_grid_item"

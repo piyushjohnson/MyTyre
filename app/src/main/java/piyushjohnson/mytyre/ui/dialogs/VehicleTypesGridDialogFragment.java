@@ -1,4 +1,4 @@
-package piyushjohnson.mytyre;
+package piyushjohnson.mytyre.ui.dialogs;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.adapter.VehicleTypesAdapter;
 import piyushjohnson.mytyre.databinding.DialogFragmentVehicleTypesGridBinding;
 import piyushjohnson.mytyre.model.VehicleType;

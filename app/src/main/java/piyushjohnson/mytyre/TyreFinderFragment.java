@@ -18,6 +18,8 @@ import piyushjohnson.mytyre.common.BaseFragment;
 import piyushjohnson.mytyre.common.OnTyreItemActionListener;
 import piyushjohnson.mytyre.databinding.FragmentTyreFinderBinding;
 import piyushjohnson.mytyre.model.Tyre;
+import piyushjohnson.mytyre.ui.MainViewModel;
+import piyushjohnson.mytyre.ui.cart.CartViewModel;
 import piyushjohnson.mytyre.util.Filters;
 
 public class TyreFinderFragment extends BaseFragment implements OnTyreItemActionListener {

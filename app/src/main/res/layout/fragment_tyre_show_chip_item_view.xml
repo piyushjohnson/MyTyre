@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Size"
-    style="@style/Widget.MaterialComponents.Chip.Action"
-    app:chipBackgroundColor="@color/colorPrimary"
-    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-    android:textColor="@android:color/primary_text_dark"
-    android:padding="8dp"
-    tools:text="Size 1">
+<layout>
 
-</com.google.android.material.chip.Chip>
+    <data>
+
+    </data>
+
+    <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Size"
+        style="@style/Widget.MaterialComponents.Chip.Action"
+        app:chipBackgroundColor="@color/colorPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/primary_text_dark"
+        android:padding="8dp"
+        tools:text="Size 1">
+
+    </com.google.android.material.chip.Chip>
+</layout>

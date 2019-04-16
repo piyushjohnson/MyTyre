@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             xmlns:tools="http://schemas.android.com/tools"
             android:fitsSystemWindows="true"
-            tools:context=".HomeActivity">
+            tools:context=".ui.home.HomeActivity">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context=".HomeActivity"
+                tools:context=".ui.home.HomeActivity"
                 tools:showIn="@layout/activity_home">
 
                 <fragment
@@ -140,6 +140,7 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_view"
+            style="@style/AppThemeNavigationView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

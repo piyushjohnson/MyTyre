@@ -1,4 +1,4 @@
-package piyushjohnson.mytyre;
+package piyushjohnson.mytyre.ui.about;
 
 
 import android.os.Bundle;
@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import piyushjohnson.mytyre.R;
 
-public class ContactFragment extends Fragment {
+public class AboutUsFragment extends Fragment {
 
 
-    public ContactFragment() {
+    public AboutUsFragment() {
         // Required empty public constructor
     }
 
@@ -20,7 +21,7 @@ public class ContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false);
+        return inflater.inflate(R.layout.fragment_about_us, container, false);
     }
 
 }

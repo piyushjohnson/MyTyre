@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/HomeScreen"
-        android:name="piyushjohnson.mytyre.HomeFragment"
+        android:name="piyushjohnson.mytyre.ui.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
@@ -42,20 +42,32 @@
 
     <fragment
         android:id="@+id/YourCart"
-        android:name="piyushjohnson.mytyre.CartFragment"
+        android:name="piyushjohnson.mytyre.ui.cart.CartFragment"
         android:label="Your Cart"
         tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/AboutUs"
-        android:name="piyushjohnson.mytyre.AboutUsFragment"
+        android:name="piyushjohnson.mytyre.ui.about.AboutUsFragment"
         android:label="About Us"
         tools:layout="@layout/fragment_about_us" />
 
-    <fragment
+    <activity
         android:id="@+id/Contact"
-        android:name="piyushjohnson.mytyre.ContactFragment"
+        android:name="piyushjohnson.mytyre.ui.contact.ContactActivity"
         android:label="Contact"
-        tools:layout="@layout/fragment_contact" />
+        tools:layout="@layout/activity_contact" />
+
+    <fragment
+        android:id="@+id/WebView"
+        android:name="piyushjohnson.mytyre.WebViewFragment"
+        android:label="WebView"
+        tools:layout="@layout/fragment_web_view">
+        <argument
+            android:name="loadUrl"
+            app:argType="string"
+            android:defaultValue="null" />
+    </fragment>
+
 
 </navigation>

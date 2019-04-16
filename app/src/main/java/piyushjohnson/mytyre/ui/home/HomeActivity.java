@@ -1,4 +1,4 @@
-package piyushjohnson.mytyre;
+package piyushjohnson.mytyre.ui.home;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,6 +24,11 @@ import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+import piyushjohnson.mytyre.ui.MainViewModel;
+import piyushjohnson.mytyre.R;
+import piyushjohnson.mytyre.TyreFinderFragment;
+import piyushjohnson.mytyre.ui.dialogs.VehicleModelsListDialogFragment;
+import piyushjohnson.mytyre.ui.dialogs.VehicleTypesGridDialogFragment;
 import piyushjohnson.mytyre.common.BaseActivity;
 import piyushjohnson.mytyre.databinding.ActivityHomeBinding;
 import piyushjohnson.mytyre.model.Tyre;
@@ -87,6 +92,8 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
                     break;
                 case R.id.HomeScreen:
                     shouldExpand = shouldScroll = true;
+                    break;
+                case R.id.Contact:
                     break;
             }
             binding.appBar.setExpanded(shouldExpand, true);
@@ -201,6 +208,7 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        boolean shouldCloseDrawer = true;
         switch (menuItem.getItemId()) {
             case R.id.nav_my_wishlist:
 
@@ -212,11 +220,13 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
                 navController.navigate(R.id.AboutUs);
                 break;
             case R.id.nav_contact:
+                shouldCloseDrawer = false;
                 navController.navigate(R.id.Contact);
                 break;
         }
         menuItem.setChecked(true);
-        binding.drawerLayout.closeDrawers();
+        if(shouldCloseDrawer)
+            binding.drawerLayout.closeDrawers();
         return true;
     }
 

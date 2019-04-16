@@ -2,6 +2,8 @@ package piyushjohnson.mytyre.model;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;

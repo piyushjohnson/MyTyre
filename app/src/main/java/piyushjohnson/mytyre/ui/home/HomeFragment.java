@@ -1,4 +1,4 @@
-package piyushjohnson.mytyre;
+package piyushjohnson.mytyre.ui.home;
 
 
 import android.content.Context;
@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import piyushjohnson.mytyre.ui.MainViewModel;
+import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.adapter.PopularTyresAdapter;
 import piyushjohnson.mytyre.common.BaseFragment;
 import piyushjohnson.mytyre.databinding.FragmentHomeBinding;
