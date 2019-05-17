@@ -1,5 +1,8 @@
 package piyushjohnson.mytyre.common;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -7,12 +10,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Source;
 
-import java.util.Objects;
-
 import javax.annotation.Nullable;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import piyushjohnson.mytyre.model.Model;
 
 public class DocumentLiveData<T extends Model> extends LiveData<Resource<T>> implements EventListener<DocumentSnapshot> {
@@ -47,11 +46,11 @@ public class DocumentLiveData<T extends Model> extends LiveData<Resource<T>> imp
 
     @Override
     public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
-        getSource(Objects.requireNonNull(snapshot));
+        getSource(snapshot);
         if (e != null) {
             setValue(new Resource<T>(e, source));
         }
-        setValue(new Resource<>(Objects.requireNonNull(snapshot.toObject(type)), source));
+        setValue(new Resource<>(snapshot.toObject(type), source));
     }
 
     public void getSource(@NonNull DocumentSnapshot snapshot) {

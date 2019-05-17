@@ -15,7 +15,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_fb" />
+        app:srcCompat="@drawable/ic_nav_fb" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -27,7 +27,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_wa" />
+        app:srcCompat="@drawable/ic_nav_wa" />
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -39,5 +39,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_email" />
+        app:srcCompat="@drawable/ic_nav_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

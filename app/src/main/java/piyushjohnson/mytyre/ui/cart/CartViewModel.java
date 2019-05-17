@@ -1,18 +1,25 @@
 package piyushjohnson.mytyre.ui.cart;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 import piyushjohnson.mytyre.model.Tyre;
 import piyushjohnson.mytyre.repo.CartRepository;
 
 public class CartViewModel extends ViewModel {
 
+    private static final String TAG = "CartViewModel";
+
     private final CartRepository cartRepository;
     private LiveData<List<Tyre>> cartItems;
+
+    public int getTotalItemCount() {
+        return cartItems.getValue().size();
+    }
 
     @Inject
     CartViewModel(CartRepository cartRepository) {
@@ -22,6 +29,15 @@ public class CartViewModel extends ViewModel {
 
     public LiveData<List<Tyre>> getCartItems() {
         return cartItems;
+    }
+
+    public void setCartItemCount(Tyre cartItem, CartAction cartAction) {
+        if (cartItems.getValue().contains(cartItem)) ;
+        cartRepository.setCartItemCount(cartItem, cartAction);
+    }
+
+    public enum CartAction {
+        QUANTITY_UP, QUANTITY_DOWN
     }
 
     public void addCartItem(Tyre cartItem) {

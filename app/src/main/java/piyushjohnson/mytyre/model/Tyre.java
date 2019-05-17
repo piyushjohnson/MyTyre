@@ -1,13 +1,11 @@
 package piyushjohnson.mytyre.model;
 
-import com.google.firebase.firestore.IgnoreExtraProperties;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.google.firebase.firestore.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 @Entity
@@ -24,6 +22,7 @@ public class Tyre extends Model {
     private String name;
     private String tagline;
     private String img_uri;
+    private int count;
 
     @Ignore
     public Tyre() {
@@ -57,5 +56,13 @@ public class Tyre extends Model {
 
     public void setImg_uri(String img_uri) {
         this.img_uri = img_uri;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

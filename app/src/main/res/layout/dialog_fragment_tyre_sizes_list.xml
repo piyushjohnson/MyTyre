@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="handlers"
+            type="piyushjohnson.mytyre.ui.dialogs.TyreSizesListDialogFragment.TyreSizesListDialogBindingHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tyre_sizes_title"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Choose Size"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tyre_sizes_type_chips"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/tyre_sizes_type_chips"
+            style="@style/Widget.MaterialComponents.ChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tyre_sizes_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tyre_sizes_title"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{(v,i) -> handlers.onVehicleTypeChanged(v,i)}"
+                android:tag="car"
+                android:text="Car"
+                app:chipBackgroundColor="@android:color/white"
+                app:chipStrokeColor="@color/colorPrimary"
+                app:chipStrokeWidth="3dp" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{(v,i) -> handlers.onVehicleTypeChanged(v,i)}"
+                android:tag="motorcycle"
+                android:text="Motorcycle"
+                app:chipBackgroundColor="@android:color/white"
+                app:chipStrokeColor="@color/colorPrimary"
+                app:chipStrokeWidth="3dp" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{(v,i) -> handlers.onVehicleTypeChanged(v,i)}"
+                android:tag="lastmile"
+                android:text="Lastmile"
+                app:chipBackgroundColor="@android:color/white"
+                app:chipStrokeColor="@color/colorPrimary"
+                app:chipStrokeWidth="3dp" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{(v,i) -> handlers.onVehicleTypeChanged(v,i)}"
+                android:tag="farm"
+                android:text="Farm"
+                app:chipBackgroundColor="@android:color/white"
+                app:chipStrokeColor="@color/colorPrimary"
+                app:chipStrokeWidth="3dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tyre_sizes_list"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/list_item_spacing_half"
+            android:paddingBottom="@dimen/list_item_spacing_half"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tyre_sizes_type_chips"
+            tools:context=".ui.dialogs.TyreSizesListDialogFragment"
+            tools:listitem="@layout/dialog_fragment_tyre_sizes_list_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

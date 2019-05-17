@@ -108,6 +108,8 @@
                     android:id="@+id/current_tyres_sizes"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/current_tyre_cart_btn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,14 +127,15 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:text="Add to cart"
-                    app:layout_constraintBottom_toTopOf="@+id/current_tyre_but_btn"
+                    app:layout_constraintBottom_toTopOf="@+id/current_tyre_buy_btn"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/current_tyres_sizes"
                     tools:text="Add to cart" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/current_tyre_but_btn"
+                    android:id="@+id/current_tyre_buy_btn"
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

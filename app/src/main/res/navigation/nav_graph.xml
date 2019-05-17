@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_HomeScreen_to_TyreFinder"
             app:destination="@id/TyreFinder" />
+        <action
+            android:id="@+id/action_HomeScreen_to_TyreShow"
+            app:destination="@id/TyreShow" />
     </fragment>
 
     <fragment
@@ -20,10 +23,6 @@
         android:name="piyushjohnson.mytyre.TyreFinderFragment"
         android:label="Find Tyre"
         tools:layout="@layout/fragment_tyre_finder">
-        <argument
-            android:name="vehicleType"
-            app:argType="string"
-            android:defaultValue="null" />
         <action
             android:id="@+id/action_TyreFinder_to_TyreShow"
             app:destination="@id/TyreShow" />
@@ -38,6 +37,9 @@
             android:name="tyreName"
             app:argType="string"
             android:defaultValue="null" />
+        <action
+            android:id="@+id/action_TyreShow_to_Checkout"
+            app:destination="@id/Checkout" />
     </fragment>
 
     <fragment
@@ -52,22 +54,16 @@
         android:label="About Us"
         tools:layout="@layout/fragment_about_us" />
 
+    <fragment
+        android:id="@+id/Checkout"
+        android:name="piyushjohnson.mytyre.ui.checkout.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout" />
+
     <activity
         android:id="@+id/Contact"
         android:name="piyushjohnson.mytyre.ui.contact.ContactActivity"
         android:label="Contact"
         tools:layout="@layout/activity_contact" />
-
-    <fragment
-        android:id="@+id/WebView"
-        android:name="piyushjohnson.mytyre.WebViewFragment"
-        android:label="WebView"
-        tools:layout="@layout/fragment_web_view">
-        <argument
-            android:name="loadUrl"
-            app:argType="string"
-            android:defaultValue="null" />
-    </fragment>
-
 
 </navigation>

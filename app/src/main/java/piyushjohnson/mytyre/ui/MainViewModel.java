@@ -2,6 +2,11 @@ package piyushjohnson.mytyre.ui;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModel;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -9,11 +14,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 import piyushjohnson.mytyre.common.Resource;
 import piyushjohnson.mytyre.model.Tyre;
+import piyushjohnson.mytyre.model.TyreParams;
 import piyushjohnson.mytyre.repo.MainRepository;
 import piyushjohnson.mytyre.util.Filters;
 
@@ -27,6 +30,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Filters> filters = new MutableLiveData<>();
     private LiveData<Boolean> isSignedIn;
     private LiveData<Resource<List<Tyre>>> tyres;
+    private LiveData<Resource<TyreParams>> tyreParams;
     private LiveData<Resource<Tyre>> tyre;
 
     @Inject
@@ -40,6 +44,9 @@ public class MainViewModel extends ViewModel {
                 setValue(FirebaseAuth.getInstance().getCurrentUser() != null);
             }
         };
+        filters.setValue(Filters.getDefault());
+        tyreParams = Transformations.switchMap(filters, repository::getTyreParams);
+        tyres = Transformations.switchMap(filters, repository::getTyres);
         Log.i(TAG, "MainViewModel: initialised main view model");
         Log.i(TAG, "MainViewModel: popularTyres " + popularTyres.hashCode());
         Log.d(TAG, "MainViewModel() called with: mainRepository = [" + mainRepository.hashCode() + "]");
@@ -64,10 +71,9 @@ public class MainViewModel extends ViewModel {
         return popularTyres;
     }
 
-    public LiveData<Resource<List<Tyre>>> getTyres(Filters filters) {
+    public LiveData<Resource<List<Tyre>>> getTyres() {
         Log.d(TAG, "getTyres() called with: filters = [" + filters + "]");
         Log.i(TAG, "getTyres: added tyres live data");
-        tyres = repository.getTyres(filters == null ? Filters.getDefault() : filters);
         return tyres;
     }
 
@@ -75,6 +81,11 @@ public class MainViewModel extends ViewModel {
         Log.d(TAG, "getTyre() called with tyreName =[" + tyreName + "]");
         tyre = repository.getTyre(tyreName);
         return tyre;
+    }
+
+    public LiveData<Resource<TyreParams>> getTyreParams() {
+        Log.d(TAG, "getTyreParams() called with: vehicleType = [" + filters.getValue().getVehicleType() + "]");
+        return tyreParams;
     }
 
     public LiveData<Boolean> getIsOffline() {
@@ -86,6 +97,10 @@ public class MainViewModel extends ViewModel {
     public void setIsOffline(boolean isOffline) {
         this.isOffline.setValue(isOffline);
         Log.d(TAG, "setIsOffline() called with: isOffline = [" + isOffline + "]");
+    }
+
+    public LiveData<Filters> getFilters() {
+        return filters;
     }
 
     public void setFilters(Filters filters) {

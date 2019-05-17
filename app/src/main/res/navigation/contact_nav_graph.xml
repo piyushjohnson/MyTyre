@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contact_nav_graph"
+    app:startDestination="@id/ContactHome">
+
+    <fragment
+        android:id="@+id/ContactHome"
+        android:name="piyushjohnson.mytyre.ui.contact.ContactHomeFragment"
+        tools:layout="@layout/fragment_contact_home" />
+
+    <fragment
+        android:id="@+id/ContactLinkView"
+        android:name="piyushjohnson.mytyre.ui.contact.ContactWebLinkViewFragment"
+        tools:layout="@layout/fragment_web_link_view">
+        <argument
+            android:name="loadUrl"
+            android:defaultValue="null"
+            app:argType="string" />
+    </fragment>
+
+
+</navigation>

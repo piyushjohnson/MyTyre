@@ -17,4 +17,11 @@
         <item>Privacy Policy</item>
         <item>Open Source Licenses</item>
     </string-array>
+
+    <string-array name="vehicle_types">
+        <item>Car</item>
+        <item>Motorcycle</item>
+        <item>Lastmile</item>
+        <item>Farm</item>
+    </string-array>
 </resources>

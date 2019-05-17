@@ -1,9 +1,13 @@
 package piyushjohnson.mytyre.model;
 
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Param {
 
     String text;
     String value;
+    boolean header;
 
     public Param() {
     }
@@ -27,5 +31,13 @@ public class Param {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public boolean isHeader() {
+        return header;
+    }
+
+    public void setHeader(boolean header) {
+        this.header = header;
     }
 }

@@ -28,28 +28,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:singleLine="true"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_by_sizes"
-                android:tag="size"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onCheckedChanged="@{(v,i) -> handlers.onFilterSelected(v,i)}"
+                android:tag="size"
                 android:text="Size"
-                android:onClick="@{(v) -> handlers.onFilterSelected(v)}"
                 app:chipBackgroundColor="@android:color/white"
                 app:chipStrokeColor="@color/colorPrimary"
                 app:chipStrokeWidth="3dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_by_model"
-                android:tag="model"
                 style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onCheckedChanged="@{(v,i) -> handlers.onFilterSelected(v,i)}"
+                android:tag="model"
                 android:text="Model"
-                android:onClick="@{(v) -> handlers.onFilterSelected(v)}"
                 app:chipBackgroundColor="@android:color/white"
                 app:chipStrokeColor="@color/colorPrimary"
                 app:chipStrokeWidth="3dp" />
@@ -59,7 +61,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tyres_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

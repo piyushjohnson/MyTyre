@@ -1,14 +1,16 @@
 package piyushjohnson.mytyre.repo;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.LiveData;
 import piyushjohnson.mytyre.db.daos.CartTyreDAO;
 import piyushjohnson.mytyre.model.Tyre;
+import piyushjohnson.mytyre.ui.cart.CartViewModel;
 
 public class CartRepository {
 
@@ -42,6 +44,26 @@ public class CartRepository {
             @Override
             public void run() {
                 dao.removeCartTyre(tyre);
+            }
+        });
+    }
+
+    public void setCartItemCount(Tyre tyre, CartViewModel.CartAction cartAction) {
+        executorService.submit(new Runnable() {
+            int count = 0;
+
+            @Override
+            public void run() {
+                switch (cartAction) {
+                    case QUANTITY_UP:
+                        count = tyre.getCount() + 1;
+                        break;
+                    case QUANTITY_DOWN:
+                        count = tyre.getCount() - 1;
+                        break;
+                }
+                tyre.setCount(count);
+                dao.updateCartTyre(tyre);
             }
         });
     }

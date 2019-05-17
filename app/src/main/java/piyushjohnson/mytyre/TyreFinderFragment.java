@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import piyushjohnson.mytyre.adapter.TyresAdapter;
 import piyushjohnson.mytyre.common.BaseFragment;
 import piyushjohnson.mytyre.common.OnTyreItemActionListener;
@@ -20,7 +21,6 @@ import piyushjohnson.mytyre.databinding.FragmentTyreFinderBinding;
 import piyushjohnson.mytyre.model.Tyre;
 import piyushjohnson.mytyre.ui.MainViewModel;
 import piyushjohnson.mytyre.ui.cart.CartViewModel;
-import piyushjohnson.mytyre.util.Filters;
 
 public class TyreFinderFragment extends BaseFragment implements OnTyreItemActionListener {
 
@@ -34,27 +34,23 @@ public class TyreFinderFragment extends BaseFragment implements OnTyreItemAction
     private Listener mListener;
 
     public TyreFinderFragment() {
-        // Required empty public constructor
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.d(TAG, "onAttach() called with: context = [" + context + "]");
         mListener = (Listener) context;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         mainViewModel = getViewModel(MainViewModel.class);
         cartViewModel = getViewModel(CartViewModel.class);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tyre_finder, container, false);
         binding.setHandlers(new TyreFinderBindingHandlers());
         return binding.getRoot();
@@ -63,53 +59,20 @@ public class TyreFinderFragment extends BaseFragment implements OnTyreItemAction
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d(TAG, "onViewCreated() called with: view = [" + view + "], savedInstanceState = [" + savedInstanceState + "]");
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "onActivityCreated() called with: savedInstanceState = [" + savedInstanceState + "]");
         init();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart() called");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume() called");
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
         getParentFragment().getView().setLayoutParams(layoutParams);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause() called");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop() called");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(TAG, "onDestroyView() called");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy() called");
     }
 
     @Override
@@ -131,9 +94,7 @@ public class TyreFinderFragment extends BaseFragment implements OnTyreItemAction
     }
 
     private void setupViewModelData() {
-        Filters filters = new Filters();
-        filters.setVehicleType(getArguments().getString("vehicleType"));
-        mainViewModel.getTyres(filters).observe(getActivity(), listResource -> {
+        mainViewModel.getTyres().observe(getActivity(), listResource -> {
             mainViewModel.setIsOffline(listResource.isStale());
             if (listResource.isSuccessful())
                 adapter.setItemsList(listResource.data());
@@ -141,7 +102,6 @@ public class TyreFinderFragment extends BaseFragment implements OnTyreItemAction
     }
 
     private void onTyreSelected(Tyre tyre) {
-        Log.i(TAG, "onTyreSelected: " + tyre.getName());
         Bundle bundle = new Bundle();
         bundle.putString("tyreName", tyre.getName());
         NavHostFragment.findNavController(this).navigate(R.id.action_TyreFinder_to_TyreShow, bundle);
@@ -164,8 +124,8 @@ public class TyreFinderFragment extends BaseFragment implements OnTyreItemAction
     }
 
     public class TyreFinderBindingHandlers {
-        public void onFilterSelected(View view) {
-            Log.d(TAG, "onFilterSelected() called with: filter = [" + view.getTag() + "]");
+        public void onFilterSelected(View view, boolean isChecked) {
+            Log.d(TAG, "onFilterSelected() called with: view = [" + view + "], id = [" + isChecked + "]");
         }
     }
 }

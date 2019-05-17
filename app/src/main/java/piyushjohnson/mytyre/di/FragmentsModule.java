@@ -2,10 +2,11 @@ package piyushjohnson.mytyre.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import piyushjohnson.mytyre.ui.cart.CartFragment;
-import piyushjohnson.mytyre.ui.home.HomeFragment;
 import piyushjohnson.mytyre.TyreFinderFragment;
 import piyushjohnson.mytyre.TyreShowFragment;
+import piyushjohnson.mytyre.ui.cart.CartFragment;
+import piyushjohnson.mytyre.ui.dialogs.TyreSizesListDialogFragment;
+import piyushjohnson.mytyre.ui.home.HomeFragment;
 
 @Module
 public abstract class FragmentsModule {
@@ -21,4 +22,7 @@ public abstract class FragmentsModule {
 
     @ContributesAndroidInjector
     abstract TyreShowFragment contributesTyreShowFragment();
+
+    @ContributesAndroidInjector
+    abstract TyreSizesListDialogFragment contributesTyreSizesListDialogFragment();
 }

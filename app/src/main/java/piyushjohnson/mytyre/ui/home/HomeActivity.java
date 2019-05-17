@@ -3,17 +3,9 @@ package piyushjohnson.mytyre.ui.home;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Arrays;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,37 +16,47 @@ import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import piyushjohnson.mytyre.ui.MainViewModel;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.TyreFinderFragment;
-import piyushjohnson.mytyre.ui.dialogs.VehicleModelsListDialogFragment;
-import piyushjohnson.mytyre.ui.dialogs.VehicleTypesGridDialogFragment;
 import piyushjohnson.mytyre.common.BaseActivity;
 import piyushjohnson.mytyre.databinding.ActivityHomeBinding;
+import piyushjohnson.mytyre.model.Param;
 import piyushjohnson.mytyre.model.Tyre;
 import piyushjohnson.mytyre.model.VehicleType;
+import piyushjohnson.mytyre.ui.MainViewModel;
+import piyushjohnson.mytyre.ui.dialogs.TyreSizesListDialogFragment;
+import piyushjohnson.mytyre.ui.dialogs.VehicleTypesGridDialogFragment;
+import piyushjohnson.mytyre.util.Filters;
 
-public class HomeActivity extends BaseActivity implements TyreFinderFragment.Listener, VehicleTypesGridDialogFragment.Listener, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, DrawerLayout.DrawerListener {
+public class HomeActivity extends BaseActivity implements TyreFinderFragment.Listener, VehicleTypesGridDialogFragment.Listener, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, TyreSizesListDialogFragment.Listener, DrawerLayout.DrawerListener {
 
     private static final String TAG = "HomeActivity";
 
     private ActivityHomeBinding binding;
     private MainViewModel mainViewModel;
     private NavController navController;
+    private Filters filters;
     private static final int RC_SIGN_IN = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         setSupportActionBar(binding.toolbar);
 
         mainViewModel = getViewModel(MainViewModel.class);
-        Log.i(TAG, "onCreate: MainViewModel " + mainViewModel.hashCode());
-        Log.i(TAG, "onCreate: NavController " + navController.hashCode());
 
         mainViewModel.getIsSignedIn().observe(this, isSignedIn -> {
             if (!isSignedIn)
@@ -84,7 +86,6 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
         binding.drawerLayout.addDrawerListener(this);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            Log.i(TAG, "onDestinationChanged: " + destination.getLabel());
             boolean shouldExpand = false, shouldScroll = false;
             switch (destination.getId()) {
                 case R.id.YourCart:
@@ -100,6 +101,7 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
             binding.nestedScrollContent.setNestedScrollingEnabled(shouldScroll);
         });
 
+        filters = new Filters();
     }
 
     private void authenticate() {
@@ -115,36 +117,6 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
                 .build();
 
         startActivityForResult(intent, RC_SIGN_IN);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart() called");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume() called");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause() called");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop() called");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy() called");
     }
 
     @Override
@@ -169,27 +141,32 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
                 dialogFragment = VehicleTypesGridDialogFragment.newInstance();
                 break;
             case R.id.tyre_size_btn:
-                dialogFragment = VehicleModelsListDialogFragment.newInstance(4);
+                dialogFragment = TyreSizesListDialogFragment.newInstance(4);
                 break;
         }
         dialogFragment.show(getSupportFragmentManager(), dialogFragment.getTag());
-        Log.i(TAG, "onClick: changed dialog");
     }
 
     @Override
     public void onVehicleTypeSelected(VehicleType vehicleType) {
-        Log.d(TAG, "onVehicleTypeSelected() called with: vehicleType = [" + vehicleType.getTitle() + "]");
-        Bundle bundle = new Bundle();
-        bundle.putString("vehicleType", vehicleType.getTitle());
-        if (navController.getCurrentDestination().getId() == R.id.TyreFinder) {
-            navController.popBackStack();
-        }
-        navController.navigate(R.id.action_HomeScreen_to_TyreFinder, bundle);
+        filters.setVehicleType(vehicleType.getTitle());
+        filters.setTyreParameters(null);
+        mainViewModel.setFilters(filters);
+        navController.navigate(R.id.TyreFinder);
+    }
+
+    @Override
+    public void onTyreSizeSelected(Param param) {
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("size", param.getValue());
+        filters.setVehicleType(null);
+        filters.setTyreParameters(parameters);
+        mainViewModel.setFilters(filters);
+        navController.navigate(R.id.TyreFinder);
     }
 
     @Override
     public void onTyreSelected(Tyre tyre) {
-        Log.d(TAG, "onTyreSelected() called with: tyre = [" + tyre.getName() + "]");
     }
 
     @Override
@@ -211,7 +188,6 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
         boolean shouldCloseDrawer = true;
         switch (menuItem.getItemId()) {
             case R.id.nav_my_wishlist:
-
                 break;
             case R.id.nav_cart:
                 navController.navigate(R.id.YourCart);
@@ -238,12 +214,12 @@ public class HomeActivity extends BaseActivity implements TyreFinderFragment.Lis
 
     @Override
     public void onDrawerOpened(@NonNull View drawerView) {
-
+        binding.rootLayout.setAlpha(0.8f);
     }
 
     @Override
     public void onDrawerClosed(@NonNull View drawerView) {
-
+        binding.rootLayout.setAlpha(1.0f);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
+
 import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.common.DataListAdapter;
 import piyushjohnson.mytyre.common.OnItemActionListener;
@@ -11,9 +12,9 @@ import piyushjohnson.mytyre.common.OnItemClickedListener;
 import piyushjohnson.mytyre.databinding.FragmentTyreShowBinding;
 import piyushjohnson.mytyre.model.Tyre;
 
-public class TyreSizeAdapter extends DataListAdapter<Tyre, FragmentTyreShowBinding, OnItemActionListener> {
+public class TyreSizeChipAdapter extends DataListAdapter<Tyre, FragmentTyreShowBinding, OnItemActionListener> {
 
-    public TyreSizeAdapter(OnItemClickedListener<Tyre> listener, OnItemActionListener actionListener) {
+    public TyreSizeChipAdapter(OnItemClickedListener<Tyre> listener, OnItemActionListener actionListener) {
         super(listener, actionListener);
     }
 

@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
+
 import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.common.DataListAdapter;
 import piyushjohnson.mytyre.common.OnItemActionListener;
@@ -25,6 +26,7 @@ public class PopularTyresAdapter extends DataListAdapter<Tyre, FragmentHomePopul
 
     @Override
     protected void bind(FragmentHomePopularTyreItemViewBinding binding, Tyre tyre) {
+        binding.getRoot().setOnClickListener(v -> listener.onItemClicked(tyre));
         binding.setTyre(tyre);
     }
 }

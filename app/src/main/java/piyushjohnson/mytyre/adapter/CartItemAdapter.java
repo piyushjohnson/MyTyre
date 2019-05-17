@@ -1,20 +1,24 @@
 package piyushjohnson.mytyre.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
+
 import piyushjohnson.mytyre.R;
 import piyushjohnson.mytyre.common.DataListAdapter;
-import piyushjohnson.mytyre.common.OnItemActionListener;
+import piyushjohnson.mytyre.common.OnCartTyreItemActionListener;
 import piyushjohnson.mytyre.common.OnItemClickedListener;
 import piyushjohnson.mytyre.databinding.FragmentCartItemViewBinding;
 import piyushjohnson.mytyre.model.Tyre;
 
-public class CartItemAdapter extends DataListAdapter<Tyre, FragmentCartItemViewBinding, OnItemActionListener> {
+public class CartItemAdapter extends DataListAdapter<Tyre, FragmentCartItemViewBinding, OnCartTyreItemActionListener> {
 
-    public CartItemAdapter(OnItemClickedListener<Tyre> listener, OnItemActionListener actionListener) {
-        super(listener, null);
+    private static final String TAG = "CartItemAdapter";
+
+    public CartItemAdapter(OnItemClickedListener<Tyre> listener, OnCartTyreItemActionListener actionListener) {
+        super(listener, actionListener);
     }
 
     @Override
@@ -26,5 +30,14 @@ public class CartItemAdapter extends DataListAdapter<Tyre, FragmentCartItemViewB
     @Override
     protected void bind(FragmentCartItemViewBinding binding, Tyre tyre) {
         binding.setTyre(tyre);
+        binding.cartTyreQuantityDown.setOnClickListener(v -> {
+            Log.i(TAG, "quantity down" + tyre.getName());
+            actionListener.onCartTyreQuantityDown(tyre);
+
+        });
+        binding.cartTyreQuantityUp.setOnClickListener(v -> {
+            Log.i(TAG, "quantity up" + tyre.getName());
+            actionListener.onCartTyreQuantityUp(tyre);
+        });
     }
 }

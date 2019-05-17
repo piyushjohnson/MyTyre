@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.contact.ContactFragment">
+    tools:context=".ui.contact.ContactActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView6"
@@ -23,51 +23,51 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/app_version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="v 1.0.0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
-                app:layout_constraintBottom_toTopOf="@+id/imageView"
-                app:layout_constraintEnd_toEndOf="@+id/textView3"
+                app:layout_constraintBottom_toTopOf="@+id/app_logo"
+                app:layout_constraintEnd_toEndOf="@+id/app_name"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintStart_toStartOf="@+id/app_name"
+                app:layout_constraintTop_toBottomOf="@+id/app_name" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/app_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Made with♥in India"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
                 app:layout_constraintBottom_toTopOf="@+id/cardView7"
-                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="@+id/app_logo"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintStart_toStartOf="@+id/app_logo"
+                app:layout_constraintTop_toBottomOf="@+id/app_logo" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My Tyre"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-                app:layout_constraintBottom_toTopOf="@+id/textView5"
+                app:layout_constraintBottom_toTopOf="@+id/app_version"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/app_logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:contentDescription="app_lcon"
-                app:layout_constraintBottom_toTopOf="@+id/textView4"
-                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintBottom_toTopOf="@+id/app_tag"
+                app:layout_constraintEnd_toEndOf="@+id/app_version"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/app_version"
+                app:layout_constraintTop_toBottomOf="@+id/app_version"
                 app:srcCompat="@drawable/ic_logo"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
@@ -88,7 +88,7 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
-                        android:id="@+id/imageButton10"
+                        android:id="@+id/insta_share_btn"
                         android:layout_width="100dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="8dp"
@@ -96,15 +96,17 @@
                         android:background="@android:color/transparent"
                         android:contentDescription="contact_instagram"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/instagram_circle_color"
+                        android:onClick="onShare"
+                        android:src="@drawable/ic_insta_circle_color"
+                        android:tag="0"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageButton9"
+                        app:layout_constraintEnd_toStartOf="@+id/fb_share_btn"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
-                        android:id="@+id/imageButton9"
+                        android:id="@+id/fb_share_btn"
                         android:layout_width="100dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="8dp"
@@ -112,15 +114,17 @@
                         android:background="@android:color/transparent"
                         android:contentDescription="contact_facebook"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/facebook_circle_color"
+                        android:onClick="onShare"
+                        android:src="@drawable/ic_fb_circle_color"
+                        android:tag="1"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageButton8"
+                        app:layout_constraintEnd_toStartOf="@+id/twitter_share_btn"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/imageButton10"
+                        app:layout_constraintStart_toEndOf="@+id/insta_share_btn"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
-                        android:id="@+id/imageButton8"
+                        android:id="@+id/twitter_share_btn"
                         android:layout_width="100dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="8dp"
@@ -128,11 +132,13 @@
                         android:background="@android:color/transparent"
                         android:contentDescription="contact_twitter"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/twitter_circle_color"
+                        android:onClick="onShare"
+                        android:src="@drawable/ic_twitter_circle_color"
+                        android:tag="2"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/imageButton9"
+                        app:layout_constraintStart_toEndOf="@+id/fb_share_btn"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -158,18 +164,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ListView
-                android:id="@+id/contact_list"
+
+            <fragment
+                android:id="@+id/contact_nav_host_fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="@android:drawable/divider_horizontal_dark"
-                android:dividerHeight="4dp"
-                android:entries="@array/contact_list"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/contact_nav_graph" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

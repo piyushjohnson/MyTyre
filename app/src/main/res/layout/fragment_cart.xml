@@ -3,46 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.cart.CartFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/your_cart_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ready to buy"
-            android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/cart_tyres_list"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cart_tyres_list"
+        <FrameLayout
+            android:id="@+id/cart_tyres_layout"
             android:layout_width="match_parent"
-            android:layout_height="575dp"
-            app:layout_constraintBottom_toTopOf="@+id/checkout_btn"
-            app:layout_constraintTop_toBottomOf="@+id/your_cart_title"
-            tools:listitem="@layout/fragment_cart_item_view" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="100dp">
 
-        <Button
-            android:id="@+id/checkout_btn"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cart_tyres_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/fragment_cart_item_view" />
+
+            <TextView
+                android:id="@+id/cart_no_item_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Add some items to cart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:visibility="invisible" />
+
+        </FrameLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:text="Proceed To Checkout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            app:layout_anchor="@id/cart_tyres_layout"
+            app:layout_anchorGravity="bottom"
+            tools:context=".ui.cart.CartFragment">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/cart_total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="8dp"
+                android:text="Total Price : 0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+                app:layout_constraintBottom_toTopOf="@+id/checkout_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Total Price : 3000" />
+
+            <Button
+                android:id="@+id/checkout_btn"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:text="Proceed To Checkout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cart_total_price" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

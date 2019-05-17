@@ -2,10 +2,12 @@ package piyushjohnson.mytyre.util;
 
 import android.text.TextUtils;
 
+import java.util.Map;
+
 public class Filters {
     private String sortBy = null;
     private String vehicleType = null;
-    private String[] tyreParameters = null;
+    private Map<String, String> tyreParameters = null;
     private String tyreName = null;
 
     public Filters() {
@@ -14,6 +16,7 @@ public class Filters {
 
     public static Filters getDefault() {
         Filters filters = new Filters();
+        filters.setVehicleType("car");
         return filters;
     }
 
@@ -26,7 +29,10 @@ public class Filters {
     }
 
     public boolean hasTyreParameters() {
-        return tyreParameters.length > 0;
+        if (tyreParameters != null)
+            return tyreParameters.size() > 0;
+        else
+            return false;
     }
 
     public boolean hasTyreName() {
@@ -49,11 +55,11 @@ public class Filters {
         this.vehicleType = vehicleType;
     }
 
-    public String[] getTyreParameters() {
+    public Map<String, String> getTyreParameters() {
         return tyreParameters;
     }
 
-    public void setTyreParameters(String[] tyreParameters) {
+    public void setTyreParameters(Map<String, String> tyreParameters) {
         this.tyreParameters = tyreParameters;
     }
 
