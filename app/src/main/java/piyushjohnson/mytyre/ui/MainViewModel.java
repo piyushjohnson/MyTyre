@@ -47,10 +47,6 @@ public class MainViewModel extends ViewModel {
         filters.setValue(Filters.getDefault());
         tyreParams = Transformations.switchMap(filters, repository::getTyreParams);
         tyres = Transformations.switchMap(filters, repository::getTyres);
-        Log.i(TAG, "MainViewModel: initialised main view model");
-        Log.i(TAG, "MainViewModel: popularTyres " + popularTyres.hashCode());
-        Log.d(TAG, "MainViewModel() called with: mainRepository = [" + mainRepository.hashCode() + "]");
-
     }
 
     public LiveData<Boolean> getIsSignedIn() {

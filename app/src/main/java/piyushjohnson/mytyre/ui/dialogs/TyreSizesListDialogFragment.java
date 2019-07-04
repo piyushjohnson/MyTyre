@@ -2,7 +2,6 @@ package piyushjohnson.mytyre.ui.dialogs;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,27 +33,41 @@ public class TyreSizesListDialogFragment extends BaseBottomSheetDialogFragment i
     private LinearLayoutManager layoutManager;
 
     public static TyreSizesListDialogFragment newInstance(int itemCount) {
+        // creating self instance
         final TyreSizesListDialogFragment fragment = new TyreSizesListDialogFragment();
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        // retrieving and setting instance of parent fragment
+        final Fragment parent = getParentFragment();
+        // setting instance 'Listener', by checking if context is of parent fragment or activity
+        if (parent != null) {
+            mListener = (TyreSizesListDialogFragment.Listener) parent;
+        } else {
+            mListener = (TyreSizesListDialogFragment.Listener) context;
+        }
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        // setting instance of binding by inflating layout of fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_fragment_tyre_sizes_list, container, false);
+        // setting binding event handler for view's of layout
         binding.setHandlers(new TyreSizesListDialogBindingHandlers());
+        // return the root view from binding instance of fragment's layout
         return binding.getRoot();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // setting instances of view model's to access state
         mainViewModel = getViewModel(MainViewModel.class);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     }
 
     @Override
@@ -63,51 +76,53 @@ public class TyreSizesListDialogFragment extends BaseBottomSheetDialogFragment i
         init();
     }
 
+    @Override
+    public void onDetach() {
+        // setting instance of fragment listener to prevent any leak, before fragments detaches from host fragment/activity
+        mListener = null;
+        super.onDetach();
+    }
+
     private void init() {
+        // initializing list of tyre's onto recycler view
         initTyreSizesList();
+        // start observing live data to, retain latest snapshot of tyre's to display
         setupViewModel();
     }
 
     private void setupViewModel() {
+        // listening to latest snapshot of all 'filters' from 'MainViewModel'
+        // toggle b/w vehicle type chips
         mainViewModel.getFilters().observe(getActivity(), filters -> {
             if (filters.hasVehicleType()) {
                 ((Chip) binding.tyreSizesTypeChips.findViewWithTag(filters.getVehicleType().toLowerCase())).setChecked(true);
             }
         });
+        // listening to latest snapshot of all 'tyreParams' from 'MainViewModel'
+        // attaches only 'size' parameter into list
         mainViewModel.getTyreParams().observe(getActivity(), tyreParamsResource -> {
             if (tyreParamsResource.isSuccessful())
                 adapter.setItemsList(tyreParamsResource.data().getSize());
         });
     }
 
+    // Fires when tyre size parameter is selected from list
     private void onTyreSizeClicked(Param param) {
-        Log.d(TAG, "onTyreSizeClicked() called with: param = [" + param.getValue() + "]");
+        // dismisses this dialog
         dismiss();
+        // recall's listener to fire 'onTyreSizeSelected' event handler onto 'HomeActivity'
         mListener.onTyreSizeSelected(param);
     }
 
     private void initTyreSizesList() {
+        // setting 'TyresSizesAdapter' to transform list of tyres onto adapter view, also registering event listeners for tyre size selection
         adapter = new TyreSizesAdapter(this::onTyreSizeClicked, this);
+        // setting 'LinearLayoutManager' to arrange each tyre size item in vertical list
         layoutManager = new LinearLayoutManager(getActivity());
+        // attaching layout manager to current adapter view instance
         binding.tyreSizesList.setLayoutManager(layoutManager);
+        // attaching adapter to current adapter view instance
         binding.tyreSizesList.setAdapter(adapter);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        final Fragment parent = getParentFragment();
-        if (parent != null) {
-            mListener = (TyreSizesListDialogFragment.Listener) parent;
-        } else {
-            mListener = (TyreSizesListDialogFragment.Listener) context;
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        mListener = null;
-        super.onDetach();
     }
 
     public interface Listener {

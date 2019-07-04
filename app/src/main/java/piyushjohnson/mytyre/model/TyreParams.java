@@ -7,23 +7,23 @@ import java.util.List;
 @IgnoreExtraProperties
 public class TyreParams extends Model {
 
-    List<Param> model;
+    List<Param> vehicle;
     List<Param> size;
 
     public TyreParams() {
     }
 
-    public TyreParams(List<Param> model, List<Param> size) {
-        this.model = model;
+    public TyreParams(List<Param> vehicle, List<Param> size) {
+        this.vehicle = vehicle;
         this.size = size;
     }
 
-    public List<Param> getModel() {
-        return model;
+    public List<Param> getVehicle() {
+        return vehicle;
     }
 
-    public void setModel(List<Param> model) {
-        this.model = model;
+    public void setVehicle(List<Param> vehicle) {
+        this.vehicle = vehicle;
     }
 
     public List<Param> getSize() {

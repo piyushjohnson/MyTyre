@@ -3,12 +3,12 @@ package piyushjohnson.mytyre.common;
 import android.net.Uri;
 import android.util.Log;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class BindingAdapters {
 
@@ -23,7 +23,7 @@ public class BindingAdapters {
         if (url != null) {
             if (Uri.parse(url).isRelative()) {
                 Glide.with(view.getContext())
-                        .load("https://www.ceat.com" + url)
+                        .load("https://cdn.ceat.com" + url)
                         .thumbnail(0.2f)
                         .diskCacheStrategy(DiskCacheStrategy.DATA)
                         .into(view);

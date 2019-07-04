@@ -8,6 +8,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -75,11 +77,22 @@ public class MainRepository {
         return query;
     }
 
+    public static String formmatter(String arg) {
+        arg = arg.replaceAll("[\\s /]", "_").replaceAll("[()]", "");
+        Matcher matcher = Pattern.compile("\\d").matcher(arg);
+        while (matcher.find()) {
+            arg = Pattern.matches("\\d", matcher.group()) ? (String.valueOf("").concat(arg.substring(0, matcher.start())).concat("_").concat(arg.substring(matcher.end() - 1, arg.length()))) : arg;
+        }
+        return arg;
+    }
+
     public DocumentReference toDoc(String collectionName, String documentName) {
         DocumentReference reference = null;
         if (documentName != null && collectionName != null) {
-            reference = firestore.collection(collectionName).document(documentName.trim().toLowerCase().replaceAll("[\\s /]", "_"));
+            reference = firestore.collection(collectionName).document(formmatter(documentName.trim().toLowerCase()));
         }
         return reference;
     }
+
 }
+
